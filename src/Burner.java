@@ -7,7 +7,16 @@ public class Burner {
 		myTimer = 0;
 	}
 	public enum Temperature{
-		BLAZING, HOT, WARM, COLD
+		BLAZING("VERY HOT! DO NOT TOUCH"), HOT("CAREFUL"), WARM("warm"), COLD("cooool");
+		private String settingValue;
+		
+		Temperature(String myValue){
+			settingValue = myValue;
+		}
+		
+		public String toString() {
+			return settingValue;
+		}
 	}
 
 	private Temperature myTemperature;
@@ -60,15 +69,19 @@ public class Burner {
 			case COLD:
 				switch(mySetting) {
 				case OFF:
+					myTimer = 2;
 					break;
 				case LOW:
 					myTemperature = myTemperature.WARM;
+					myTimer = 2;
 					break;
 				case MEDIUM:
 					myTemperature = myTemperature.WARM;
+					myTimer = 2;
 					break;
 				case HIGH:
 					myTemperature = myTemperature.WARM;
+					myTimer = 2;
 					break;
 				}
 				break;
@@ -76,14 +89,18 @@ public class Burner {
 				switch(mySetting) {
 				case OFF:
 					myTemperature = myTemperature.COLD;
+					myTimer = 2;
 					break;
 				case LOW:
+					myTimer = 2;
 					break;
 				case MEDIUM:
 					myTemperature = myTemperature.HOT;
+					myTimer = 2;
 					break;
 				case HIGH:
 					myTemperature = myTemperature.HOT;
+					myTimer = 2;
 					break;
 				}
 				break;
@@ -91,14 +108,18 @@ public class Burner {
 				switch(mySetting) {
 				case OFF:
 					myTemperature = myTemperature.WARM;
+					myTimer = 2;
 					break;
 				case LOW:
 					myTemperature = myTemperature.WARM;
+					myTimer = 2;
 					break;
 				case MEDIUM:
+					myTimer = 2;
 					break;
 				case HIGH:
 					myTemperature = myTemperature.BLAZING;
+					myTimer = 2;
 					break;
 				}
 				break;
@@ -106,19 +127,32 @@ public class Burner {
 				switch(mySetting) {
 				case OFF:
 					myTemperature = myTemperature.HOT;
+					myTimer = 2;
 					break;
 				case LOW:
 					myTemperature = myTemperature.HOT;
+					myTimer = 2;
 					break;
 				case MEDIUM:
 					myTemperature = myTemperature.HOT;
+					myTimer = 2;
 					break;
 				case HIGH:
+					myTimer = 2;
 					break;
 				}
 				break;
 			}
 		}
+	}
+
+	public Temperature getMyTemperature() {
+		return myTemperature;
+	}
+
+	@Override
+	public String toString() {
+		return "[" + mySetting.toString() + "]....." + myTemperature.toString();
 	}
 
 
